@@ -6,15 +6,14 @@ services:
             - SPRING_PROFILES_ACTIVE=prod,swagger
             - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/eureka
             - SPRING_CLOUD_CONFIG_URI=http://admin:$${jhipster.registry.password}@jhipster-registry:8761/config
-            - SPRING_DATA_MONGODB_URI=mongodb://gateway-mongodb:27017
-            - SPRING_DATA_MONGODB_DATABASE=gateway
+            - SPRING_DATASOURCE_URL=jdbc:mysql://gateway-mysql:3306/gateway?useUnicode=true&characterEncoding=utf8&useSSL=false
             - JHIPSTER_SLEEP=30 # gives time for the JHipster Registry to boot before the application
         ports:
-            - 8080:8080
-    gateway-mongodb:
+            - 8090:8090
+    gateway-mysql:
         extends:
-            file: mongodb.yml
-            service: gateway-mongodb
+            file: mysql.yml
+            service: gateway-mysql
     jhipster-registry:
         extends:
             file: jhipster-registry.yml

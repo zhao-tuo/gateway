@@ -1,5 +1,5 @@
 # gateway
-This application was generated using JHipster 4.5.5, you can find documentation and help at [https://jhipster.github.io/documentation-archive/v4.5.5](https://jhipster.github.io/documentation-archive/v4.5.5).
+This application was generated using JHipster 4.8.2, you can find documentation and help at [http://www.jhipster.tech/documentation-archive/v4.8.2](http://www.jhipster.tech/documentation-archive/v4.8.2).
 
 This is a "gateway" application intended to be part of a microservice architecture, please refer to the [Doing microservices with JHipster][] page of the documentation for more information.
 
@@ -33,6 +33,26 @@ specifying a newer version in [package.json](package.json). You can also run `ya
 Add the `help` flag on any command to see how you can use it. For example, `yarn help update`.
 
 The `yarn run` command will list all of the scripts available to run for this project.
+
+### Service workers
+
+Service workers are commented by default, to enable them please uncomment the following code.
+
+* The service worker registering script in index.html
+```
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+        .register('./sw.js')
+        .then(function() { console.log('Service Worker Registered'); });
+    }
+</script>
+```
+* The copy file option in webpack-common.js
+```js
+{ from: './src/main/webapp/sw.js', to: 'sw.js' },
+```
+Note: Add the respective scripts/assets in `sw.js` that is needed to be cached.
 
 ### Managing dependencies
 
@@ -74,6 +94,7 @@ will generate few files:
     create src/main/webapp/app/my-component/my-component.component.ts
     update src/main/webapp/app/app.module.ts
 
+
 ## Building for production
 
 To optimize the gateway application for production, run:
@@ -85,7 +106,7 @@ To ensure everything worked, run:
 
     java -jar target/*.war
 
-Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
+Then navigate to [http://localhost:8090](http://localhost:8090) in your browser.
 
 Refer to [Using JHipster in production][] for more details.
 
@@ -108,18 +129,18 @@ For more information, refer to the [Running tests page][].
 ## Using Docker to simplify development (optional)
 
 You can use Docker to improve your JHipster development experience. A number of docker-compose configuration are available in the [src/main/docker](src/main/docker) folder to launch required third party services.
-For example, to start a mongodb database in a docker container, run:
+For example, to start a mysql database in a docker container, run:
 
-    docker-compose -f src/main/docker/mongodb.yml up -d
+    docker-compose -f src/main/docker/mysql.yml up -d
 
 To stop it and remove the container, run:
 
-    docker-compose -f src/main/docker/mongodb.yml down
+    docker-compose -f src/main/docker/mysql.yml down
 
 You can also fully dockerize your application and all the services that it depends on.
 To achieve this, first build a docker image of your app by running:
 
-    ./mvnw package -Pprod docker:build
+    ./mvnw package -Pprod dockerfile:build
 
 Then run:
 
@@ -131,15 +152,15 @@ For more information refer to [Using Docker and Docker-Compose][], this page als
 
 To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
 
-[JHipster Homepage and latest documentation]: https://jhipster.github.io
-[JHipster 4.5.5 archive]: https://jhipster.github.io/documentation-archive/v4.5.5
-[Doing microservices with JHipster]: https://jhipster.github.io/documentation-archive/v4.5.5/microservices-architecture/
-[Using JHipster in development]: https://jhipster.github.io/documentation-archive/v4.5.5/development/
-[Service Discovery and Configuration with the JHipster-Registry]: https://jhipster.github.io/documentation-archive/v4.5.5/microservices-architecture/#jhipster-registry
-[Using Docker and Docker-Compose]: https://jhipster.github.io/documentation-archive/v4.5.5/docker-compose
-[Using JHipster in production]: https://jhipster.github.io/documentation-archive/v4.5.5/production/
-[Running tests page]: https://jhipster.github.io/documentation-archive/v4.5.5/running-tests/
-[Setting up Continuous Integration]: https://jhipster.github.io/documentation-archive/v4.5.5/setting-up-ci/
+[JHipster Homepage and latest documentation]: http://www.jhipster.tech
+[JHipster 4.8.2 archive]: http://www.jhipster.tech/documentation-archive/v4.8.2
+[Doing microservices with JHipster]: http://www.jhipster.tech/documentation-archive/v4.8.2/microservices-architecture/
+[Using JHipster in development]: http://www.jhipster.tech/documentation-archive/v4.8.2/development/
+[Service Discovery and Configuration with the JHipster-Registry]: http://www.jhipster.tech/documentation-archive/v4.8.2/microservices-architecture/#jhipster-registry
+[Using Docker and Docker-Compose]: http://www.jhipster.tech/documentation-archive/v4.8.2/docker-compose
+[Using JHipster in production]: http://www.jhipster.tech/documentation-archive/v4.8.2/production/
+[Running tests page]: http://www.jhipster.tech/documentation-archive/v4.8.2/running-tests/
+[Setting up Continuous Integration]: http://www.jhipster.tech/documentation-archive/v4.8.2/setting-up-ci/
 
 
 [Node.js]: https://nodejs.org/
