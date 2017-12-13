@@ -4,11 +4,11 @@ import com.codahale.metrics.annotation.Timed;
 import com.zt.gateway.domain.Job;
 
 import com.zt.gateway.repository.JobRepository;
+import com.zt.gateway.web.rest.errors.BadRequestAlertException;
 import com.zt.gateway.web.rest.util.HeaderUtil;
 import com.zt.gateway.web.rest.util.PaginationUtil;
 import com.zt.gateway.service.dto.JobDTO;
 import com.zt.gateway.service.mapper.JobMapper;
-import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,7 +57,7 @@ public class JobResource {
     public ResponseEntity<JobDTO> createJob(@RequestBody JobDTO jobDTO) throws URISyntaxException {
         log.debug("REST request to save Job : {}", jobDTO);
         if (jobDTO.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new job cannot already have an ID")).body(null);
+            throw new BadRequestAlertException("A new job cannot already have an ID", ENTITY_NAME, "idexists");
         }
         Job job = jobMapper.toEntity(jobDTO);
         job = jobRepository.save(job);
@@ -99,7 +99,7 @@ public class JobResource {
      */
     @GetMapping("/jobs")
     @Timed
-    public ResponseEntity<List<JobDTO>> getAllJobs(@ApiParam Pageable pageable) {
+    public ResponseEntity<List<JobDTO>> getAllJobs(Pageable pageable) {
         log.debug("REST request to get a page of Jobs");
         Page<Job> page = jobRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/jobs");

@@ -47,9 +47,9 @@ public class TaskServiceImpl implements TaskService{
     }
 
     /**
-     *  Get all the tasks.
+     * Get all the tasks.
      *
-     *  @return the list of entities
+     * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
@@ -61,10 +61,10 @@ public class TaskServiceImpl implements TaskService{
     }
 
     /**
-     *  Get one task by id.
+     * Get one task by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     @Override
     @Transactional(readOnly = true)
@@ -75,9 +75,9 @@ public class TaskServiceImpl implements TaskService{
     }
 
     /**
-     *  Delete the  task by id.
+     * Delete the task by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     @Override
     public void delete(Long id) {

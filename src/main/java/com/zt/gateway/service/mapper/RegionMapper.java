@@ -9,9 +9,12 @@ import org.mapstruct.*;
  * Mapper for the entity Region and its DTO RegionDTO.
  */
 @Mapper(componentModel = "spring", uses = {})
-public interface RegionMapper extends EntityMapper <RegionDTO, Region> {
+public interface RegionMapper extends EntityMapper<RegionDTO, Region> {
+
     
+
     
+
     default Region fromId(Long id) {
         if (id == null) {
             return null;

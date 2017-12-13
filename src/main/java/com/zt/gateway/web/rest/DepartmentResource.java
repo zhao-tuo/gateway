@@ -2,6 +2,7 @@ package com.zt.gateway.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.zt.gateway.service.DepartmentService;
+import com.zt.gateway.web.rest.errors.BadRequestAlertException;
 import com.zt.gateway.web.rest.util.HeaderUtil;
 import com.zt.gateway.service.dto.DepartmentDTO;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -46,7 +47,7 @@ public class DepartmentResource {
     public ResponseEntity<DepartmentDTO> createDepartment(@Valid @RequestBody DepartmentDTO departmentDTO) throws URISyntaxException {
         log.debug("REST request to save Department : {}", departmentDTO);
         if (departmentDTO.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new department cannot already have an ID")).body(null);
+            throw new BadRequestAlertException("A new department cannot already have an ID", ENTITY_NAME, "idexists");
         }
         DepartmentDTO result = departmentService.save(departmentDTO);
         return ResponseEntity.created(new URI("/api/departments/" + result.getId()))

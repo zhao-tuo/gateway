@@ -2,6 +2,7 @@ package com.zt.gateway.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.zt.gateway.service.RegionService;
+import com.zt.gateway.web.rest.errors.BadRequestAlertException;
 import com.zt.gateway.web.rest.util.HeaderUtil;
 import com.zt.gateway.service.dto.RegionDTO;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -45,7 +46,7 @@ public class RegionResource {
     public ResponseEntity<RegionDTO> createRegion(@RequestBody RegionDTO regionDTO) throws URISyntaxException {
         log.debug("REST request to save Region : {}", regionDTO);
         if (regionDTO.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new region cannot already have an ID")).body(null);
+            throw new BadRequestAlertException("A new region cannot already have an ID", ENTITY_NAME, "idexists");
         }
         RegionDTO result = regionService.save(regionDTO);
         return ResponseEntity.created(new URI("/api/regions/" + result.getId()))

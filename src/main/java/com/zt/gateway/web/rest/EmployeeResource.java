@@ -4,11 +4,11 @@ import com.codahale.metrics.annotation.Timed;
 import com.zt.gateway.domain.Employee;
 
 import com.zt.gateway.repository.EmployeeRepository;
+import com.zt.gateway.web.rest.errors.BadRequestAlertException;
 import com.zt.gateway.web.rest.util.HeaderUtil;
 import com.zt.gateway.web.rest.util.PaginationUtil;
 import com.zt.gateway.service.dto.EmployeeDTO;
 import com.zt.gateway.service.mapper.EmployeeMapper;
-import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,7 +57,7 @@ public class EmployeeResource {
     public ResponseEntity<EmployeeDTO> createEmployee(@RequestBody EmployeeDTO employeeDTO) throws URISyntaxException {
         log.debug("REST request to save Employee : {}", employeeDTO);
         if (employeeDTO.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new employee cannot already have an ID")).body(null);
+            throw new BadRequestAlertException("A new employee cannot already have an ID", ENTITY_NAME, "idexists");
         }
         Employee employee = employeeMapper.toEntity(employeeDTO);
         employee = employeeRepository.save(employee);
@@ -99,7 +99,7 @@ public class EmployeeResource {
      */
     @GetMapping("/employees")
     @Timed
-    public ResponseEntity<List<EmployeeDTO>> getAllEmployees(@ApiParam Pageable pageable) {
+    public ResponseEntity<List<EmployeeDTO>> getAllEmployees(Pageable pageable) {
         log.debug("REST request to get a page of Employees");
         Page<Employee> page = employeeRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/employees");

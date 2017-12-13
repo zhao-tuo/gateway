@@ -25,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.util.List;
 
+import static com.zt.gateway.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -77,6 +78,7 @@ public class JobResourceIntTest {
         this.restJobMockMvc = MockMvcBuilders.standaloneSetup(jobResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
             .setMessageConverters(jacksonMessageConverter).build();
     }
 
@@ -189,6 +191,8 @@ public class JobResourceIntTest {
 
         // Update the job
         Job updatedJob = jobRepository.findOne(job.getId());
+        // Disconnect from session so that the updates on updatedJob are not directly saved in db
+        em.detach(updatedJob);
         updatedJob
             .jobTitle(UPDATED_JOB_TITLE)
             .minSalary(UPDATED_MIN_SALARY)

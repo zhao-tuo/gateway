@@ -142,8 +142,8 @@ public class EmployeeDTO implements Serializable {
             ", email='" + getEmail() + "'" +
             ", phoneNumber='" + getPhoneNumber() + "'" +
             ", hireDate='" + getHireDate() + "'" +
-            ", salary='" + getSalary() + "'" +
-            ", commissionPct='" + getCommissionPct() + "'" +
+            ", salary=" + getSalary() +
+            ", commissionPct=" + getCommissionPct() +
             "}";
     }
 }

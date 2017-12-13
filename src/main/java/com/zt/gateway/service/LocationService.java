@@ -17,24 +17,24 @@ public interface LocationService {
     LocationDTO save(LocationDTO locationDTO);
 
     /**
-     *  Get all the locations.
+     * Get all the locations.
      *
-     *  @return the list of entities
+     * @return the list of entities
      */
     List<LocationDTO> findAll();
 
     /**
-     *  Get the "id" location.
+     * Get the "id" location.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     LocationDTO findOne(Long id);
 
     /**
-     *  Delete the "id" location.
+     * Delete the "id" location.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     void delete(Long id);
 }

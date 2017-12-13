@@ -46,10 +46,10 @@ public class JobHistoryServiceImpl implements JobHistoryService{
     }
 
     /**
-     *  Get all the jobHistories.
+     * Get all the jobHistories.
      *
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * @param pageable the pagination information
+     * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
@@ -60,10 +60,10 @@ public class JobHistoryServiceImpl implements JobHistoryService{
     }
 
     /**
-     *  Get one jobHistory by id.
+     * Get one jobHistory by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     @Override
     @Transactional(readOnly = true)
@@ -74,9 +74,9 @@ public class JobHistoryServiceImpl implements JobHistoryService{
     }
 
     /**
-     *  Delete the  jobHistory by id.
+     * Delete the jobHistory by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     @Override
     public void delete(Long id) {

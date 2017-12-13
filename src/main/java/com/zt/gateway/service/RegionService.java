@@ -17,24 +17,24 @@ public interface RegionService {
     RegionDTO save(RegionDTO regionDTO);
 
     /**
-     *  Get all the regions.
+     * Get all the regions.
      *
-     *  @return the list of entities
+     * @return the list of entities
      */
     List<RegionDTO> findAll();
 
     /**
-     *  Get the "id" region.
+     * Get the "id" region.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     RegionDTO findOne(Long id);
 
     /**
-     *  Delete the "id" region.
+     * Delete the "id" region.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     void delete(Long id);
 }

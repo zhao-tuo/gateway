@@ -2,6 +2,7 @@ package com.zt.gateway.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.zt.gateway.service.CountryService;
+import com.zt.gateway.web.rest.errors.BadRequestAlertException;
 import com.zt.gateway.web.rest.util.HeaderUtil;
 import com.zt.gateway.service.dto.CountryDTO;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -45,7 +46,7 @@ public class CountryResource {
     public ResponseEntity<CountryDTO> createCountry(@RequestBody CountryDTO countryDTO) throws URISyntaxException {
         log.debug("REST request to save Country : {}", countryDTO);
         if (countryDTO.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new country cannot already have an ID")).body(null);
+            throw new BadRequestAlertException("A new country cannot already have an ID", ENTITY_NAME, "idexists");
         }
         CountryDTO result = countryService.save(countryDTO);
         return ResponseEntity.created(new URI("/api/countries/" + result.getId()))

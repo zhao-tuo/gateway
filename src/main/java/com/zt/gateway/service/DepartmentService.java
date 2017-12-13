@@ -17,24 +17,24 @@ public interface DepartmentService {
     DepartmentDTO save(DepartmentDTO departmentDTO);
 
     /**
-     *  Get all the departments.
+     * Get all the departments.
      *
-     *  @return the list of entities
+     * @return the list of entities
      */
     List<DepartmentDTO> findAll();
 
     /**
-     *  Get the "id" department.
+     * Get the "id" department.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     DepartmentDTO findOne(Long id);
 
     /**
-     *  Delete the "id" department.
+     * Delete the "id" department.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     void delete(Long id);
 }

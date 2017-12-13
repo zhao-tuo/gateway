@@ -17,24 +17,24 @@ public interface CountryService {
     CountryDTO save(CountryDTO countryDTO);
 
     /**
-     *  Get all the countries.
+     * Get all the countries.
      *
-     *  @return the list of entities
+     * @return the list of entities
      */
     List<CountryDTO> findAll();
 
     /**
-     *  Get the "id" country.
+     * Get the "id" country.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     CountryDTO findOne(Long id);
 
     /**
-     *  Delete the "id" country.
+     * Delete the "id" country.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     void delete(Long id);
 }

@@ -26,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.util.List;
 
+import static com.zt.gateway.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -78,6 +79,7 @@ public class TaskResourceIntTest {
         this.restTaskMockMvc = MockMvcBuilders.standaloneSetup(taskResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
             .setMessageConverters(jacksonMessageConverter).build();
     }
 
@@ -186,6 +188,8 @@ public class TaskResourceIntTest {
 
         // Update the task
         Task updatedTask = taskRepository.findOne(task.getId());
+        // Disconnect from session so that the updates on updatedTask are not directly saved in db
+        em.detach(updatedTask);
         updatedTask
             .title(UPDATED_TITLE)
             .description(UPDATED_DESCRIPTION);

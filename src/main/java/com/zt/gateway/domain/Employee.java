@@ -7,6 +7,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
@@ -64,7 +65,7 @@ public class Employee implements Serializable {
     @ManyToOne
     private Employee manager;
 
-    // jhipster-needle-entity-add-field - Jhipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -214,7 +215,7 @@ public class Employee implements Serializable {
     public void setManager(Employee employee) {
         this.manager = employee;
     }
-    // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {
@@ -245,8 +246,8 @@ public class Employee implements Serializable {
             ", email='" + getEmail() + "'" +
             ", phoneNumber='" + getPhoneNumber() + "'" +
             ", hireDate='" + getHireDate() + "'" +
-            ", salary='" + getSalary() + "'" +
-            ", commissionPct='" + getCommissionPct() + "'" +
+            ", salary=" + getSalary() +
+            ", commissionPct=" + getCommissionPct() +
             "}";
     }
 }
