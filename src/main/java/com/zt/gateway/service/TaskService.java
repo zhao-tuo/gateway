@@ -17,24 +17,24 @@ public interface TaskService {
     TaskDTO save(TaskDTO taskDTO);
 
     /**
-     *  Get all the tasks.
+     * Get all the tasks.
      *
-     *  @return the list of entities
+     * @return the list of entities
      */
     List<TaskDTO> findAll();
 
     /**
-     *  Get the "id" task.
+     * Get the "id" task.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     TaskDTO findOne(Long id);
 
     /**
-     *  Delete the "id" task.
+     * Delete the "id" task.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     void delete(Long id);
 }

@@ -4,7 +4,7 @@
       "packageName": "com.zt.gateway",
       "nativeLanguage": "zh-cn"
     },
-    "jhipsterVersion": "4.8.2",
+    "jhipsterVersion": "4.12.0",
     "baseName": "gateway",
     "packageName": "com.zt.gateway",
     "packageFolder": "com/zt/gateway",

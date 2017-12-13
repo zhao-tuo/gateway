@@ -2,10 +2,10 @@ package com.zt.gateway.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.zt.gateway.service.JobHistoryService;
+import com.zt.gateway.web.rest.errors.BadRequestAlertException;
 import com.zt.gateway.web.rest.util.HeaderUtil;
 import com.zt.gateway.web.rest.util.PaginationUtil;
 import com.zt.gateway.service.dto.JobHistoryDTO;
-import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,7 +51,7 @@ public class JobHistoryResource {
     public ResponseEntity<JobHistoryDTO> createJobHistory(@RequestBody JobHistoryDTO jobHistoryDTO) throws URISyntaxException {
         log.debug("REST request to save JobHistory : {}", jobHistoryDTO);
         if (jobHistoryDTO.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new jobHistory cannot already have an ID")).body(null);
+            throw new BadRequestAlertException("A new jobHistory cannot already have an ID", ENTITY_NAME, "idexists");
         }
         JobHistoryDTO result = jobHistoryService.save(jobHistoryDTO);
         return ResponseEntity.created(new URI("/api/job-histories/" + result.getId()))
@@ -89,7 +89,7 @@ public class JobHistoryResource {
      */
     @GetMapping("/job-histories")
     @Timed
-    public ResponseEntity<List<JobHistoryDTO>> getAllJobHistories(@ApiParam Pageable pageable) {
+    public ResponseEntity<List<JobHistoryDTO>> getAllJobHistories(Pageable pageable) {
         log.debug("REST request to get a page of JobHistories");
         Page<JobHistoryDTO> page = jobHistoryService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/job-histories");

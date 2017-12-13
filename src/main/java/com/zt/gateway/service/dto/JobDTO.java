@@ -97,8 +97,8 @@ public class JobDTO implements Serializable {
         return "JobDTO{" +
             "id=" + getId() +
             ", jobTitle='" + getJobTitle() + "'" +
-            ", minSalary='" + getMinSalary() + "'" +
-            ", maxSalary='" + getMaxSalary() + "'" +
+            ", minSalary=" + getMinSalary() +
+            ", maxSalary=" + getMaxSalary() +
             "}";
     }
 }

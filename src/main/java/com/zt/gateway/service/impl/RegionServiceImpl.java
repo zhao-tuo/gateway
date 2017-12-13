@@ -47,9 +47,9 @@ public class RegionServiceImpl implements RegionService{
     }
 
     /**
-     *  Get all the regions.
+     * Get all the regions.
      *
-     *  @return the list of entities
+     * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
@@ -61,10 +61,10 @@ public class RegionServiceImpl implements RegionService{
     }
 
     /**
-     *  Get one region by id.
+     * Get one region by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     @Override
     @Transactional(readOnly = true)
@@ -75,9 +75,9 @@ public class RegionServiceImpl implements RegionService{
     }
 
     /**
-     *  Delete the  region by id.
+     * Delete the region by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     @Override
     public void delete(Long id) {

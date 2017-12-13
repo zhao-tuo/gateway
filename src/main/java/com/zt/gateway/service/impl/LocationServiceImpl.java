@@ -47,9 +47,9 @@ public class LocationServiceImpl implements LocationService{
     }
 
     /**
-     *  Get all the locations.
+     * Get all the locations.
      *
-     *  @return the list of entities
+     * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
@@ -61,10 +61,10 @@ public class LocationServiceImpl implements LocationService{
     }
 
     /**
-     *  Get one location by id.
+     * Get one location by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     @Override
     @Transactional(readOnly = true)
@@ -75,9 +75,9 @@ public class LocationServiceImpl implements LocationService{
     }
 
     /**
-     *  Delete the  location by id.
+     * Delete the location by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     @Override
     public void delete(Long id) {

@@ -27,6 +27,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+import static com.zt.gateway.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -91,6 +92,7 @@ public class EmployeeResourceIntTest {
         this.restEmployeeMockMvc = MockMvcBuilders.standaloneSetup(employeeResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
             .setMessageConverters(jacksonMessageConverter).build();
     }
 
@@ -219,6 +221,8 @@ public class EmployeeResourceIntTest {
 
         // Update the employee
         Employee updatedEmployee = employeeRepository.findOne(employee.getId());
+        // Disconnect from session so that the updates on updatedEmployee are not directly saved in db
+        em.detach(updatedEmployee);
         updatedEmployee
             .firstName(UPDATED_FIRST_NAME)
             .lastName(UPDATED_LAST_NAME)

@@ -2,6 +2,7 @@ package com.zt.gateway.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.zt.gateway.service.TaskService;
+import com.zt.gateway.web.rest.errors.BadRequestAlertException;
 import com.zt.gateway.web.rest.util.HeaderUtil;
 import com.zt.gateway.service.dto.TaskDTO;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -45,7 +46,7 @@ public class TaskResource {
     public ResponseEntity<TaskDTO> createTask(@RequestBody TaskDTO taskDTO) throws URISyntaxException {
         log.debug("REST request to save Task : {}", taskDTO);
         if (taskDTO.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new task cannot already have an ID")).body(null);
+            throw new BadRequestAlertException("A new task cannot already have an ID", ENTITY_NAME, "idexists");
         }
         TaskDTO result = taskService.save(taskDTO);
         return ResponseEntity.created(new URI("/api/tasks/" + result.getId()))

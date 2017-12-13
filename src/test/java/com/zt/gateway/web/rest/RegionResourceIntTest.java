@@ -26,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.util.List;
 
+import static com.zt.gateway.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -75,6 +76,7 @@ public class RegionResourceIntTest {
         this.restRegionMockMvc = MockMvcBuilders.standaloneSetup(regionResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
             .setMessageConverters(jacksonMessageConverter).build();
     }
 
@@ -179,6 +181,8 @@ public class RegionResourceIntTest {
 
         // Update the region
         Region updatedRegion = regionRepository.findOne(region.getId());
+        // Disconnect from session so that the updates on updatedRegion are not directly saved in db
+        em.detach(updatedRegion);
         updatedRegion
             .regionName(UPDATED_REGION_NAME);
         RegionDTO regionDTO = regionMapper.toDto(updatedRegion);

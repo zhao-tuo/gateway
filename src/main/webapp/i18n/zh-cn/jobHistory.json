@@ -3,14 +3,14 @@
         "jobHistory" : {
             "home": {
                 "title": "Job Histories",
-                "createLabel": "Create a new Job History",
-                "createOrEditLabel": "Create or edit a Job History"
+                "createLabel": "创建新 Job History",
+                "createOrEditLabel": "创建或编辑 Job History"
             },
-            "created": "A new Job History is created with identifier {{ param }}",
-            "updated": "A Job History is updated with identifier {{ param }}",
-            "deleted": "A Job History is deleted with identifier {{ param }}",
+            "created": "Job History {{ param }} 创建成功",
+            "updated": "Job History {{ param }} 更新成功",
+            "deleted": "Job History {{ param }} 删除成功",
             "delete": {
-                "question": "Are you sure you want to delete Job History {{ id }}?"
+                "question": "你确定要删除 Job History {{ id }} 吗？"
             },
             "detail": {
                 "title": "Job History"

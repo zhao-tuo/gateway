@@ -2,6 +2,7 @@ package com.zt.gateway.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.zt.gateway.service.LocationService;
+import com.zt.gateway.web.rest.errors.BadRequestAlertException;
 import com.zt.gateway.web.rest.util.HeaderUtil;
 import com.zt.gateway.service.dto.LocationDTO;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -45,7 +46,7 @@ public class LocationResource {
     public ResponseEntity<LocationDTO> createLocation(@RequestBody LocationDTO locationDTO) throws URISyntaxException {
         log.debug("REST request to save Location : {}", locationDTO);
         if (locationDTO.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new location cannot already have an ID")).body(null);
+            throw new BadRequestAlertException("A new location cannot already have an ID", ENTITY_NAME, "idexists");
         }
         LocationDTO result = locationService.save(locationDTO);
         return ResponseEntity.created(new URI("/api/locations/" + result.getId()))

@@ -3,14 +3,14 @@
         "region" : {
             "home": {
                 "title": "Regions",
-                "createLabel": "Create a new Region",
-                "createOrEditLabel": "Create or edit a Region"
+                "createLabel": "创建新 Region",
+                "createOrEditLabel": "创建或编辑 Region"
             },
-            "created": "A new Region is created with identifier {{ param }}",
-            "updated": "A Region is updated with identifier {{ param }}",
-            "deleted": "A Region is deleted with identifier {{ param }}",
+            "created": "Region {{ param }} 创建成功",
+            "updated": "Region {{ param }} 更新成功",
+            "deleted": "Region {{ param }} 删除成功",
             "delete": {
-                "question": "Are you sure you want to delete Region {{ id }}?"
+                "question": "你确定要删除 Region {{ id }} 吗？"
             },
             "detail": {
                 "title": "Region"

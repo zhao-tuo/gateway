@@ -47,9 +47,9 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     /**
-     *  Get all the departments.
+     * Get all the departments.
      *
-     *  @return the list of entities
+     * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
@@ -61,10 +61,10 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     /**
-     *  Get one department by id.
+     * Get one department by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     @Override
     @Transactional(readOnly = true)
@@ -75,9 +75,9 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     /**
-     *  Delete the  department by id.
+     * Delete the department by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     @Override
     public void delete(Long id) {

@@ -28,6 +28,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
+import static com.zt.gateway.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -84,6 +85,7 @@ public class JobHistoryResourceIntTest {
         this.restJobHistoryMockMvc = MockMvcBuilders.standaloneSetup(jobHistoryResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
             .setMessageConverters(jacksonMessageConverter).build();
     }
 
@@ -196,6 +198,8 @@ public class JobHistoryResourceIntTest {
 
         // Update the jobHistory
         JobHistory updatedJobHistory = jobHistoryRepository.findOne(jobHistory.getId());
+        // Disconnect from session so that the updates on updatedJobHistory are not directly saved in db
+        em.detach(updatedJobHistory);
         updatedJobHistory
             .startDate(UPDATED_START_DATE)
             .endDate(UPDATED_END_DATE)

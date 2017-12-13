@@ -18,25 +18,25 @@ public interface JobHistoryService {
     JobHistoryDTO save(JobHistoryDTO jobHistoryDTO);
 
     /**
-     *  Get all the jobHistories.
+     * Get all the jobHistories.
      *
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * @param pageable the pagination information
+     * @return the list of entities
      */
     Page<JobHistoryDTO> findAll(Pageable pageable);
 
     /**
-     *  Get the "id" jobHistory.
+     * Get the "id" jobHistory.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     JobHistoryDTO findOne(Long id);
 
     /**
-     *  Delete the "id" jobHistory.
+     * Delete the "id" jobHistory.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     void delete(Long id);
 }

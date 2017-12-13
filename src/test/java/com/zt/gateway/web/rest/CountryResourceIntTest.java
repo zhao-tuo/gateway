@@ -26,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.util.List;
 
+import static com.zt.gateway.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -75,6 +76,7 @@ public class CountryResourceIntTest {
         this.restCountryMockMvc = MockMvcBuilders.standaloneSetup(countryResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
             .setMessageConverters(jacksonMessageConverter).build();
     }
 
@@ -179,6 +181,8 @@ public class CountryResourceIntTest {
 
         // Update the country
         Country updatedCountry = countryRepository.findOne(country.getId());
+        // Disconnect from session so that the updates on updatedCountry are not directly saved in db
+        em.detach(updatedCountry);
         updatedCountry
             .countryName(UPDATED_COUNTRY_NAME);
         CountryDTO countryDTO = countryMapper.toDto(updatedCountry);

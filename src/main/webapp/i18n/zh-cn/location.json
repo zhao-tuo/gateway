@@ -3,14 +3,14 @@
         "location" : {
             "home": {
                 "title": "Locations",
-                "createLabel": "Create a new Location",
-                "createOrEditLabel": "Create or edit a Location"
+                "createLabel": "创建新 Location",
+                "createOrEditLabel": "创建或编辑 Location"
             },
-            "created": "A new Location is created with identifier {{ param }}",
-            "updated": "A Location is updated with identifier {{ param }}",
-            "deleted": "A Location is deleted with identifier {{ param }}",
+            "created": "Location {{ param }} 创建成功",
+            "updated": "Location {{ param }} 更新成功",
+            "deleted": "Location {{ param }} 删除成功",
             "delete": {
-                "question": "Are you sure you want to delete Location {{ id }}?"
+                "question": "你确定要删除 Location {{ id }} 吗？"
             },
             "detail": {
                 "title": "Location"

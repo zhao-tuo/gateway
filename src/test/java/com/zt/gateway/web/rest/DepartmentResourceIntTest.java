@@ -26,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.util.List;
 
+import static com.zt.gateway.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -75,6 +76,7 @@ public class DepartmentResourceIntTest {
         this.restDepartmentMockMvc = MockMvcBuilders.standaloneSetup(departmentResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
             .setMessageConverters(jacksonMessageConverter).build();
     }
 
@@ -198,6 +200,8 @@ public class DepartmentResourceIntTest {
 
         // Update the department
         Department updatedDepartment = departmentRepository.findOne(department.getId());
+        // Disconnect from session so that the updates on updatedDepartment are not directly saved in db
+        em.detach(updatedDepartment);
         updatedDepartment
             .departmentName(UPDATED_DEPARTMENT_NAME);
         DepartmentDTO departmentDTO = departmentMapper.toDto(updatedDepartment);

@@ -47,9 +47,9 @@ public class CountryServiceImpl implements CountryService{
     }
 
     /**
-     *  Get all the countries.
+     * Get all the countries.
      *
-     *  @return the list of entities
+     * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
@@ -61,10 +61,10 @@ public class CountryServiceImpl implements CountryService{
     }
 
     /**
-     *  Get one country by id.
+     * Get one country by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     @Override
     @Transactional(readOnly = true)
@@ -75,9 +75,9 @@ public class CountryServiceImpl implements CountryService{
     }
 
     /**
-     *  Delete the  country by id.
+     * Delete the country by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     @Override
     public void delete(Long id) {
