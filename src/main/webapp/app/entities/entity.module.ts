@@ -1,9 +1,25 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
+import { GatewayRegionMySuffixModule } from './region/region-my-suffix.module';
+import { GatewayCountryMySuffixModule } from './country/country-my-suffix.module';
+import { GatewayLocationMySuffixModule } from './location/location-my-suffix.module';
+import { GatewayDepartmentMySuffixModule } from './department/department-my-suffix.module';
+import { GatewayTaskMySuffixModule } from './task/task-my-suffix.module';
+import { GatewayEmployeeMySuffixModule } from './employee/employee-my-suffix.module';
+import { GatewayJobMySuffixModule } from './job/job-my-suffix.module';
+import { GatewayJobHistoryMySuffixModule } from './job-history/job-history-my-suffix.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
     imports: [
+        GatewayRegionMySuffixModule,
+        GatewayCountryMySuffixModule,
+        GatewayLocationMySuffixModule,
+        GatewayDepartmentMySuffixModule,
+        GatewayTaskMySuffixModule,
+        GatewayEmployeeMySuffixModule,
+        GatewayJobMySuffixModule,
+        GatewayJobHistoryMySuffixModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],
